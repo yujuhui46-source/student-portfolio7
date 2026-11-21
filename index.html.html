@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="가상의 대학생 유주희의 교육행정직 공무원 준비 포트폴리오">
+  <meta name="theme-color" content="#f6f2e8">
+  <title>유주희 | 기록하고 정리하는 사람</title>
+  <style>
+    :root {
+      --cream: #f6f2e8;
+      --paper: #fffdf7;
+      --green: #183f32;
+      --green-2: #285744;
+      --sage: #dce7d8;
+      --mint: #edf2e8;
+      --ink: #26352d;
+      --muted: #718078;
+      --line: #e4e5d9;
+      --gold: #d5a85b;
+      --shadow: 0 18px 50px rgba(30, 58, 43, .10);
+      --radius: 24px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body {
+      margin: 0; background: var(--cream); color: var(--ink);
+      font-family: Pretendard, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+      line-height: 1.65;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .wrap { width: min(1120px, calc(100% - 44px)); margin: 0 auto; }
+    header {
+      position: sticky; top: 0; z-index: 20; background: rgba(246,242,232,.92);
+      backdrop-filter: blur(14px); border-bottom: 1px solid rgba(24,63,50,.09);
+    }
+    .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { font-weight: 850; color: var(--green); letter-spacing: -.04em; font-size: 1.12rem; }
+    .brand span { color: var(--gold); }
+    .nav-links { display: flex; align-items: center; gap: 26px; font-size: .91rem; color: #53645a; }
+    .nav-links a:hover, .nav-links a:focus-visible { color: var(--green); }
+    .nav-toggle { display: none; border: 1px solid var(--line); background: var(--paper); color: var(--green); border-radius: 12px; padding: 8px 12px; cursor: pointer; }
+    .hero { padding: 76px 0 72px; }
+    .hero-grid { display: grid; grid-template-columns: 1.02fr .98fr; align-items: center; gap: 44px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; color: var(--green-2); background: #e7eddf; border-radius: 999px; padding: 7px 13px; font-size: .82rem; font-weight: 750; }
+    .eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #7e9c76; }
+    h1 { margin: 20px 0 16px; color: var(--green); font-size: clamp(2.5rem, 5vw, 4.35rem); letter-spacing: -.065em; line-height: 1.13; }
+    h1 em { color: #799276; font-style: normal; }
+    .hero-copy { max-width: 530px; color: #617067; font-size: 1.04rem; }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 9px; margin: 24px 0 28px; }
+    .chip { border: 1px solid #dce2d6; background: rgba(255,253,247,.72); border-radius: 999px; padding: 7px 12px; font-size: .84rem; color: #526359; }
+    .actions { display: flex; flex-wrap: wrap; gap: 11px; align-items: center; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; border: 0; border-radius: 13px; padding: 12px 18px; cursor: pointer; font-weight: 750; transition: background .2s, transform .2s; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { color: white; background: var(--green); box-shadow: 0 8px 18px rgba(24,63,50,.16); }
+    .btn-primary:hover { background: #245541; }
+    .btn-soft { color: var(--green); background: #e5ebdf; }
+    .btn-soft:hover { background: #d9e4d4; }
+    .scene-wrap { min-width: 0; }
+    .scene-motion {
+      width: 100%; max-width: 520px; margin: 0 auto; transform: translate3d(0,0,0);
+      transform-style: preserve-3d; will-change: transform;
+      touch-action: pan-y; user-select: none;
+    }
+    .scene-motion svg { display: block; width: 100%; height: auto; overflow: visible; }
+    .scene-caption { text-align: center; max-width: 440px; margin: 14px auto 0; color: #758078; font-size: .85rem; }
+    .motion-control { display: flex; justify-content: center; margin-top: 12px; }
+    .motion-control button { border: 1px solid #dce2d6; background: rgba(255,253,247,.85); color: var(--green); border-radius: 999px; padding: 8px 13px; cursor: pointer; font-size: .82rem; font-weight: 700; }
+    .motion-control button:focus-visible, .btn:focus-visible, a:focus-visible, .nav-toggle:focus-visible { outline: 3px solid #c79b50; outline-offset: 3px; }
+    section { padding: 72px 0; }
+    .section-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 28px; }
+    .kicker { color: #82917f; font-size: .78rem; font-weight: 850; letter-spacing: .13em; text-transform: uppercase; }
+    h2 { margin: 6px 0 0; color: var(--green); font-size: clamp(1.8rem, 3vw, 2.45rem); letter-spacing: -.05em; line-height: 1.2; }
+    .section-desc { max-width: 460px; margin: 0; color: var(--muted); font-size: .94rem; }
+    .about-panel { display: grid; grid-template-columns: 1.15fr .85fr; gap: 24px; }
+    .panel { background: var(--paper); border: 1px solid rgba(24,63,50,.07); border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow); }
+    .panel h3 { margin: 0 0 12px; color: var(--green); font-size: 1.15rem; }
+    .panel p { margin: 0; color: #647168; }
+    .fact-list { display: grid; gap: 13px; }
+    .fact { display: flex; justify-content: space-between; gap: 15px; border-bottom: 1px solid var(--line); padding-bottom: 11px; font-size: .93rem; }
+    .fact:last-child { border: 0; padding-bottom: 0; }
+    .fact span:first-child { color: #849087; }
+    .fact strong { color: var(--green); text-align: right; }
+    .project-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .project-card { display: flex; flex-direction: column; min-height: 280px; background: var(--paper); border: 1px solid rgba(24,63,50,.08); border-radius: 22px; padding: 24px; box-shadow: 0 12px 32px rgba(30,58,43,.06); }
+    .project-no { display: inline-grid; place-items: center; width: 39px; height: 39px; border-radius: 13px; color: var(--green); background: var(--sage); font-weight: 850; }
+    .project-card h3 { margin: 19px 0 9px; color: var(--green); font-size: 1.13rem; }
+    .project-card p { color: var(--muted); font-size: .91rem; margin: 0 0 18px; }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 7px; margin-top: auto; }
+    .tag { color: #627268; background: #eff2e9; padding: 5px 9px; border-radius: 8px; font-size: .76rem; }
+    .detail-btn { margin-top: 18px; padding: 0; border: 0; background: none; color: #52745d; font-weight: 800; text-align: left; cursor: pointer; }
+    .detail-btn:hover { color: #1d4936; }
+    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .skill-card { background: #e9eee3; border-radius: 20px; padding: 23px; }
+    .skill-card h3 { margin: 0 0 7px; color: var(--green); font-size: 1.04rem; }
+    .skill-card p { margin: 0; color: #6a796f; font-size: .9rem; }
+    .skill-level { height: 7px; margin-top: 17px; border-radius: 99px; background: #d4ddcf; overflow: hidden; }
+    .skill-level span { display: block; height: 100%; border-radius: inherit; background: #557b60; }
+    .timeline { position: relative; display: grid; gap: 0; margin-left: 8px; }
+    .timeline::before { content: ""; position: absolute; left: 8px; top: 8px; bottom: 12px; width: 2px; background: #d7e0d3; }
+    .timeline-item { position: relative; padding: 0 0 28px 36px; }
+    .timeline-item::before { content: ""; position: absolute; left: 1px; top: 7px; width: 16px; height: 16px; border-radius: 50%; background: #799678; border: 4px solid var(--cream); box-shadow: 0 0 0 1px #cbd8c8; }
+    .timeline-item time { color: #879387; font-size: .82rem; font-weight: 750; }
+    .timeline-item h3 { margin: 4px 0 5px; color: var(--green); font-size: 1.04rem; }
+    .timeline-item p { margin: 0; color: var(--muted); font-size: .91rem; }
+    .contact { background: var(--green); color: #f8f5eb; border-radius: 30px; padding: 42px; display: flex; align-items: center; justify-content: space-between; gap: 30px; }
+    .contact h2 { color: #fffdf7; }
+    .contact p { color: #cbd8ce; margin: 12px 0 0; }
+    .contact .btn { background: #f2eddf; color: var(--green); white-space: nowrap; }
+    footer { padding: 28px 0 36px; color: #879188; font-size: .8rem; text-align: center; }
+    .fiction-note { display: inline-block; margin-top: 9px; padding: 5px 10px; border: 1px solid rgba(255,255,255,.22); border-radius: 999px; color: #e8e2d1; font-size: .76rem; }
+    dialog { width: min(560px, calc(100% - 32px)); border: 0; border-radius: 22px; padding: 0; color: var(--ink); box-shadow: 0 24px 80px rgba(0,0,0,.25); }
+    dialog::backdrop { background: rgba(17,39,29,.48); backdrop-filter: blur(3px); }
+    .modal-inner { padding: 28px; background: var(--paper); }
+    .modal-inner h3 { margin: 0 0 10px; color: var(--green); font-size: 1.35rem; }
+    .modal-inner p { color: #637168; margin: 0 0 18px; }
+    .modal-actions { display: flex; justify-content: flex-end; }
+    @media (max-width: 800px) {
+      .hero { padding-top: 48px; }
+      .hero-grid, .about-panel { grid-template-columns: 1fr; }
+      .hero-grid { gap: 32px; }
+      .scene-wrap { order: 2; }
+      .hero-text { order: 1; }
+      .scene-motion { max-width: 470px; }
+      .project-grid, .skills-grid { grid-template-columns: 1fr 1fr; }
+      .section-head { display: block; }
+      .section-desc { margin-top: 12px; }
+    }
+    @media (max-width: 560px) {
+      .wrap { width: min(100% - 32px, 1120px); }
+      .nav { min-height: 66px; }
+      .nav-toggle { display: inline-flex; }
+      .nav-links { display: none; position: absolute; top: 66px; left: 0; right: 0; padding: 16px 22px 20px; background: var(--cream); border-bottom: 1px solid var(--line); flex-direction: column; align-items: stretch; gap: 14px; }
+      .nav-links.open { display: flex; }
+      .hero { padding: 42px 0 48px; }
+      h1 { font-size: 2.65rem; }
+      section { padding: 54px 0; }
+      .project-grid, .skills-grid { grid-template-columns: 1fr; }
+      .panel { padding: 22px; }
+      .contact { display: block; padding: 30px 24px; }
+      .contact .btn { margin-top: 22px; }
+      .scene-caption { font-size: .8rem; padding: 0 8px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#home" aria-label="맨 위로 이동">JOOHEE<span>.</span></a>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks">메뉴 ☰</button>
+      <nav class="nav-links" id="navLinks" aria-label="주요 메뉴">
+        <a href="#about">소개</a><a href="#projects">프로젝트</a><a href="#skills">역량</a><a href="#activities">활동 기록</a><a href="#contact">연락처</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-text">
+          <span class="eyebrow">차근차근 쌓아가는 행정 역량</span>
+          <h1>기록하고 정리하며<br><em>신뢰를 만드는</em> 사람,<br>유주희입니다.</h1>
+          <p class="hero-copy">회계학에서 배운 정확성과 꼼꼼함을 바탕으로, 시민에게 도움이 되는 행정 서비스를 만들고 싶습니다. 작은 일도 책임감 있게 마무리하는 태도로 9급 교육행정직 공무원을 준비하고 있습니다.</p>
+          <div class="hero-meta">
+            <span class="chip">가톨릭대학교 회계학과</span><span class="chip">교육행정직 준비</span><span class="chip">문서·데이터 정리</span>
+          </div>
+          <div class="actions">
+            <a class="btn btn-primary" href="#projects">프로젝트 보기 ↗</a>
+            <a class="btn btn-soft" href="#contact">연락하기</a>
+          </div>
+        </div>
+
+        <div class="scene-wrap">
+          <div class="scene-motion" id="sceneMotion" aria-label="듀얼 모니터와 둥근 캐릭터가 있는 아늑한 데이터 작업실 일러스트">
+            <svg viewBox="0 0 560 440" role="img" aria-labelledby="sceneTitle sceneDesc">
+              <title id="sceneTitle">주희의 데이터 작업실</title>
+              <desc id="sceneDesc">나무 책상 위 듀얼 모니터에서 표와 그래프를 정리하고, 둥근 캐릭터와 식물, 머그컵이 함께 있는 따뜻한 작업실입니다.</desc>
+              <defs>
+                <linearGradient id="wall" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#eef1e5"/><stop offset="1" stop-color="#dce7d8"/></linearGradient>
+                <linearGradient id="desk" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#c99660"/><stop offset="1" stop-color="#a96f43"/></linearGradient>
+                <linearGradient id="screen" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#284c42"/><stop offset="1" stop-color="#18352f"/></linearGradient>
+                <linearGradient id="mug" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fffdf5"/><stop offset="1" stop-color="#dce5d8"/></linearGradient>
+                <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="10" stdDeviation="9" flood-color="#345340" flood-opacity=".16"/></filter>
+              </defs>
+              <ellipse cx="278" cy="385" rx="226" ry="24" fill="#b8c8b4" opacity=".38"/>
+              <rect x="38" y="26" width="484" height="332" rx="34" fill="url(#wall)"/>
+              <circle cx="470" cy="83" r="30" fill="#f8edcf" opacity=".8"/>
+              <rect x="65" y="55" width="102" height="82" rx="13" fill="#f9f6e9" opacity=".8"/>
+              <path d="M116 55v82M65 96h102" stroke="#d5dfd1" stroke-width="5"/>
+              <path d="M77 122c18-25 40-29 77-6" stroke="#a7b99f" stroke-width="4" fill="none"/>
+              <!-- plant -->
+              <g filter="url(#shadow)">
+                <path d="M90 280h54l-7 65H97z" fill="#c58e68"/>
+                <path d="M117 283c-20-26-16-48-1-65 13 19 17 39 1 65M119 282c1-34 18-52 38-53-1 26-13 44-38 53M114 285c-28-9-40-28-37-49 24 8 38 24 37 49" fill="#6f956e"/>
+                <path d="M117 286V220" stroke="#507657" stroke-width="4" stroke-linecap="round"/>
+              </g>
+              <!-- desk -->
+              <path d="M54 304q0-13 14-13h424q14 0 14 13v19H54z" fill="url(#desk)" filter="url(#shadow)"/>
+              <path d="M83 323h16v54H83zM451 323h16v54h-16z" fill="#93613f"/>
+              <path d="M70 311h420" stroke="#e0b17d" stroke-width="3" opacity=".7"/>
+              <!-- monitor stands -->
+              <path d="M237 267h18v29h-18zM357 267h18v29h-18z" fill="#82948a"/>
+              <path d="M218 296h55M338 296h55" stroke="#82948a" stroke-width="8" stroke-linecap="round"/>
+              <!-- dual monitors -->
+              <g filter="url(#shadow)">
+                <rect x="169" y="112" width="150" height="158" rx="13" fill="#344b43"/>
+                <rect x="179" y="122" width="130" height="135" rx="7" fill="url(#screen)"/>
+                <rect x="329" y="112" width="112" height="158" rx="13" fill="#344b43"/>
+                <rect x="338" y="122" width="94" height="135" rx="7" fill="#f9f7ed"/>
+              </g>
+              <!-- left screen spreadsheet -->
+              <rect x="190" y="137" width="108" height="17" rx="4" fill="#9ab99a"/>
+              <path d="M190 164h108M190 185h108M190 206h108M190 227h108M217 164v72M244 164v72M271 164v72" stroke="#799b86" stroke-width="1.5" opacity=".8"/>
+              <rect x="193" y="168" width="19" height="12" rx="2" fill="#e6c77f"/><rect x="247" y="189" width="20" height="12" rx="2" fill="#e6c77f"/>
+              <path d="M193 245h76" stroke="#b8d1b6" stroke-width="3" stroke-linecap="round"/>
+              <!-- right screen chart -->
+              <rect x="350" y="137" width="69" height="9" rx="4" fill="#d9e3d5"/>
+              <path d="M352 232V163M352 232h65" stroke="#b4c6b7" stroke-width="2"/>
+              <rect x="360" y="204" width="9" height="28" rx="3" fill="#a9c2a2"/>
+              <rect x="375" y="187" width="9" height="45" rx="3" fill="#7fa17f"/>
+              <rect x="390" y="172" width="9" height="60" rx="3" fill="#d7b36d"/>
+              <path d="M358 184l18-8 14 5 18-17" stroke="#63866d" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+              <!-- keyboard -->
+              <rect x="244" y="300" width="111" height="13" rx="6" fill="#e7e8dc" stroke="#b9c5b7"/>
+              <path d="M256 305h86" stroke="#b4c0b2" stroke-width="2" stroke-dasharray="4 5"/>
+              <!-- cute character -->
+              <g filter="url(#shadow)">
+                <ellipse cx="300" cy="276" rx="39" ry="34" fill="#e9bd8f"/>
+                <ellipse cx="300" cy="287" rx="32" ry="24" fill="#f4d6b4"/>
+                <circle cx="287" cy="273" r="3.5" fill="#4b5144"/><circle cx="313" cy="273" r="3.5" fill="#4b5144"/>
+                <path d="M294 284q6 7 12 0" stroke="#9b6958" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                <circle cx="279" cy="282" r="5" fill="#e7a39a" opacity=".7"/><circle cx="321" cy="282" r="5" fill="#e7a39a" opacity=".7"/>
+                <path d="M280 247q-8-12-17-5M320 247q8-12 17-5" stroke="#d39e72" stroke-width="7" stroke-linecap="round"/>
+              </g>
+              <!-- mug -->
+              <g filter="url(#shadow)">
+                <path d="M397 287h43v42q0 10-11 10h-21q-11 0-11-10z" fill="url(#mug)"/>
+                <path d="M440 296h9q15 0 11 15-3 11-20 9" fill="none" stroke="#dce5d8" stroke-width="8"/>
+                <path d="M406 299h25" stroke="#d6b77a" stroke-width="4" stroke-linecap="round"/>
+                <path d="M411 278q-8-10 0-18M426 278q-8-10 0-18" stroke="#fff" stroke-width="3" opacity=".7" fill="none" stroke-linecap="round"/>
+              </g>
+              <!-- paper and pencil -->
+              <rect x="151" y="309" width="66" height="35" rx="5" fill="#fff8e8" transform="rotate(-7 151 309)"/>
+              <path d="M162 319l40-5M164 329l29-4" stroke="#bdcbb8" stroke-width="2"/>
+              <path d="M457 281l31 29" stroke="#d7a65e" stroke-width="6" stroke-linecap="round"/>
+              <path d="M455 279l5 2-3 7z" fill="#5e6c58"/>
+              <text x="280" y="75" text-anchor="middle" fill="#54745a" font-size="13" font-weight="700" letter-spacing="2">JOOHEE'S DATA STUDIO</text>
+            </svg>
+          </div>
+          <p class="scene-caption">듀얼 모니터로 자료를 살피고, 나무 책상 위에서 차분히 기록을 정리하는 작은 데이터 작업실입니다.</p>
+          <div class="motion-control"><button type="button" id="motionToggle" aria-pressed="false">움직임 멈추기</button></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="wrap">
+        <div class="section-head"><div><div class="kicker">01 / About</div><h2>소개</h2></div><p class="section-desc">정확한 자료 처리와 책임감 있는 태도를 바탕으로 공공 교육행정 분야를 준비합니다.</p></div>
+        <div class="about-panel">
+          <article class="panel"><h3>작은 일도 정확하게, 함께 쓰는 결과물은 보기 쉽게</h3><p>회계학을 공부하며 숫자와 자료를 체계적으로 확인하는 습관을 길렀습니다. 컴퓨터활용능력과 엑셀, 파워포인트를 활용해 정보를 정리하고 전달하는 데 관심이 있습니다. 앞으로는 교육 현장의 행정 업무를 안정적으로 지원하고, 학생과 교직원 모두에게 신뢰받는 교육행정 공무원이 되는 것이 목표입니다.</p></article>
+          <aside class="panel fact-list">
+            <div class="fact"><span>이름</span><strong>유주희</strong></div>
+            <div class="fact"><span>학교 / 전공</span><strong>가톨릭대학교 회계학과</strong></div>
+            <div class="fact"><span>희망 직렬</span><strong>9급 교육행정직</strong></div>
+            <div class="fact"><span>관심 분야</span><strong>교육행정 · 문서관리 · 데이터</strong></div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="wrap">
+        <div class="section-head"><div><div class="kicker">02 / Projects</div><h2>프로젝트</h2></div><p class="section-desc">문서 작성, 데이터 정리, 발표 자료 구성 역량을 보여주는 가상의 프로젝트입니다.</p></div>
+        <div class="project-grid">
+          <article class="project-card">
+            <span class="project-no">01</span><h3>교육 프로그램 예산 정리표</h3>
+            <p>가상의 교내 비교과 프로그램 예산 항목을 분류하고, 계획 대비 집행 현황을 엑셀로 정리했습니다.</p>
+            <div class="tag-row"><span class="tag">Excel</span><span class="tag">예산 관리</span><span class="tag">함수·차트</span></div>
+            <button class="detail-btn" data-project="budget">상세 보기 →</button>
+          </article>
+          <article class="project-card">
+            <span class="project-no">02</span><h3>행정 문서 데이터 관리</h3>
+            <p>가상의 학생 신청 자료를 기준에 따라 정렬하고 중복·누락 여부를 확인하는 관리 양식을 설계했습니다.</p>
+            <div class="tag-row"><span class="tag">컴퓨터활용능력</span><span class="tag">Excel</span><span class="tag">자료 검증</span></div>
+            <button class="detail-btn" data-project="records">상세 보기 →</button>
+          </article>
+          <article class="project-card">
+            <span class="project-no">03</span><h3>학교 안내 자료 제작</h3>
+            <p>가상의 신입생 대상 학사·행정 안내 내용을 핵심 정보 중심으로 구성해 발표 자료로 제작했습니다.</p>
+            <div class="tag-row"><span class="tag">PowerPoint</span><span class="tag">정보 구조화</span><span class="tag">시각화</span></div>
+            <button class="detail-btn" data-project="guide">상세 보기 →</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="wrap">
+        <div class="section-head"><div><div class="kicker">03 / Skills</div><h2>역량</h2></div><p class="section-desc">학습과 프로젝트를 통해 다져 온 사무·문서 활용 역량입니다. 숙련도는 포트폴리오용 가상 설정입니다.</p></div>
+        <div class="skills-grid">
+          <article class="skill-card"><h3>컴퓨터활용능력</h3><p>스프레드시트 기능 이해, 데이터 정렬 및 분석 기초</p><div class="skill-level"><span style="width:78%"></span></div></article>
+          <article class="skill-card"><h3>Excel</h3><p>기초 함수, 조건별 집계, 표와 차트 구성</p><div class="skill-level"><span style="width:85%"></span></div></article>
+          <article class="skill-card"><h3>PowerPoint</h3><p>정보 구조화, 발표 흐름 설계, 시각 자료 제작</p><div class="skill-level"><span style="width:82%"></span></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="activities">
+      <div class="wrap">
+        <div class="section-head"><div><div class="kicker">04 / Activities</div><h2>활동 기록</h2></div><p class="section-desc">학업과 진로 준비 과정에서 쌓아 온 경험을 시간순으로 정리했습니다.</p></div>
+        <div class="panel">
+          <div class="timeline">
+            <article class="timeline-item"><time>2026 · 진로 준비</time><h3>9급 교육행정직 공무원 시험 준비</h3><p>교육행정 분야 직무와 시험 과목을 조사하고 학습 계획을 수립하는 과정으로 설정했습니다.</p></article>
+            <article class="timeline-item"><time>2025 · 전공 학습</time><h3>회계·경영 관련 전공 과목 학습</h3><p>회계 정보의 정확한 이해와 수치 검토를 중심으로 전공 기초를 다진 활동입니다.</p></article>
+            <article class="timeline-item"><time>2025 · 문서 역량</time><h3>컴퓨터활용능력 및 OA 도구 학습</h3><p>엑셀 데이터 관리와 파워포인트 발표 자료 제작 능력을 높이기 위한 학습 기록입니다.</p></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <div class="contact">
+          <div><div class="kicker" style="color:#b6c9b7">05 / Contact</div><h2>함께 배우고 성장하겠습니다.</h2><p>포트폴리오에 대한 문의나 연락은 이메일로 보내주세요.</p><span class="fiction-note">※ 본 페이지의 인물·학력·프로젝트·활동·역량은 모두 포트폴리오 제작을 위한 가상 설정입니다.</span></div>
+          <a class="btn" href="mailto:jjuhee0329@naver.com">jjuhee0329@naver.com ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer><div class="wrap">© 2026 JOOHEE PORTFOLIO · 가상 인물 및 가상 이력으로 구성된 예시 페이지</div></footer>
+
+  <dialog id="projectDialog" aria-labelledby="dialogTitle">
+    <div class="modal-inner">
+      <h3 id="dialogTitle">프로젝트 상세</h3><p id="dialogBody"></p>
+      <div class="modal-actions"><button class="btn btn-primary" id="closeDialog" type="button">닫기</button></div>
+    </div>
+  </dialog>
+
+  <script>
+    // 모바일 메뉴
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => {
+      const opened = navLinks.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', String(opened));
+    });
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    }));
+
+    // 프로젝트 상세 보기
+    const projectDetails = {
+      budget: {
+        title: '교육 프로그램 예산 정리표',
+        body: '가상의 교육 프로그램 운영 예산을 인쇄비, 강사비, 재료비 등으로 분류하고 계획 금액과 집행 금액을 비교하는 엑셀 양식을 구성했습니다. SUM, IF 등의 기초 함수를 활용해 항목별 합계와 잔액을 확인하고, 차트로 지출 비중을 한눈에 파악하도록 설계했습니다.'
+      },
+      records: {
+        title: '행정 문서 데이터 관리',
+        body: '가상의 신청자 목록을 대상으로 필수 입력 항목을 정리하고, 정렬·필터 기능을 활용해 자료를 확인하는 양식을 만들었습니다. 중복 입력과 누락 가능성을 점검하는 확인 절차를 두어 행정 자료의 정확성과 재확인 편의성을 높이는 데 초점을 맞췄습니다.'
+      },
+      guide: {
+        title: '학교 안내 자료 제작',
+        body: '가상의 신입생 안내 자료를 학사 일정, 수강 신청, 학생 지원 정보로 나누어 파워포인트로 구성했습니다. 한 슬라이드에 하나의 핵심 메시지를 배치하고, 표와 아이콘을 활용해 처음 접하는 사람도 내용을 빠르게 찾을 수 있도록 정리했습니다.'
+      }
+    };
+    const dialog = document.getElementById('projectDialog');
+    document.querySelectorAll('[data-project]').forEach(button => {
+      button.addEventListener('click', () => {
+        const item = projectDetails[button.dataset.project];
+        document.getElementById('dialogTitle').textContent = item.title;
+        document.getElementById('dialogBody').textContent = item.body;
+        dialog.showModal();
+      });
+    });
+    document.getElementById('closeDialog').addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', event => {
+      if (event.target === dialog) dialog.close();
+    });
+
+    // 작업실 일러스트 모션: RAF 시간 기반 부유 + 데스크톱 포인터 기울기 + 스크롤 이동
+    (() => {
+      const scene = document.getElementById('sceneMotion');
+      const toggle = document.getElementById('motionToggle');
+      const reduceQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const coarseQuery = window.matchMedia('(pointer: coarse)');
+      const state = {
+        paused: reduceQuery.matches,
+        hidden: document.hidden,
+        pointerX: 0, pointerY: 0,
+        targetX: 0, targetY: 0,
+        currentX: 0, currentY: 0,
+        scrollY: window.scrollY,
+        currentScroll: 0,
+        frame: 0,
+        lastTime: 0,
+        startTime: 0
+      };
+      const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+      const desktopPointer = () => window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+      function setButton() {
+        toggle.textContent = state.paused ? '움직임 시작하기' : '움직임 멈추기';
+        toggle.setAttribute('aria-pressed', String(state.paused));
+      }
+      function resetTargets() {
+        state.targetX = 0; state.targetY = 0;
+      }
+      function onPointerMove(event) {
+        if (!desktopPointer() || state.paused || state.hidden) return;
+        const rect = scene.getBoundingClientRect();
+        const nx = ((event.clientX - rect.left) / rect.width - .5) * 2;
+        const ny = ((event.clientY - rect.top) / rect.height - .5) * 2;
+        state.targetY = clamp(nx * 5, -5, 5);
+        state.targetX = clamp(-ny * 5, -5, 5);
+      }
+      function onScroll() {
+        state.scrollY = window.scrollY;
+      }
+      function render(time) {
+        if (state.paused || state.hidden || document.hidden) {
+          state.frame = 0;
+          return;
+        }
+        if (!state.startTime) state.startTime = time;
+        const elapsed = (time - state.startTime) / 1000;
+        const floatY = Math.sin((elapsed / 7) * Math.PI * 2) * 10;
+        const maxScroll = Math.min(20, Math.max(0, state.scrollY * .035));
+        state.currentScroll += (maxScroll - state.currentScroll) * .08;
+        state.currentX += (state.targetX - state.currentX) * .055;
+        state.currentY += (state.targetY - state.currentY) * .055;
+        const y = floatY - state.currentScroll;
+        scene.style.transform =
+          `translate3d(${state.currentY}px, ${y}px, 0) rotateX(${state.currentX}deg) rotateY(${state.currentY * .55}deg)`;
+        state.frame = requestAnimationFrame(render);
+      }
+      function start() {
+        if (state.paused || state.hidden || document.hidden || state.frame) return;
+        state.startTime = 0;
+        state.frame = requestAnimationFrame(render);
+      }
+      function stop() {
+        if (state.frame) cancelAnimationFrame(state.frame);
+        state.frame = 0;
+        scene.style.transform = 'translate3d(0,0,0)';
+      }
+      toggle.addEventListener('click', () => {
+        state.paused = !state.paused;
+        setButton();
+        if (state.paused) { resetTargets(); stop(); }
+        else start();
+      });
+      scene.addEventListener('pointermove', onPointerMove);
+      scene.addEventListener('pointerleave', resetTargets);
+      window.addEventListener('scroll', onScroll, { passive: true });
+      document.addEventListener('visibilitychange', () => {
+        state.hidden = document.hidden;
+        if (state.hidden) stop(); else start();
+      });
+      const onMotionPreference = () => {
+        if (reduceQuery.matches) {
+          state.paused = true; resetTargets(); stop(); setButton();
+        }
+      };
+      if (reduceQuery.addEventListener) reduceQuery.addEventListener('change', onMotionPreference);
+      else reduceQuery.addListener(onMotionPreference);
+      // 터치 기기에서는 포인터 추적을 사용하지 않음
+      if (coarseQuery.matches) resetTargets();
+      setButton();
+      if (!state.paused) start();
+    })();
+  </script>
+</body>
+</html>
